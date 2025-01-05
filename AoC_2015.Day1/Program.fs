@@ -11,7 +11,9 @@ let main args =
         let directions = fileData.ToCharArray() |> Array.toList |> List.map (fun c -> match c with | '(' -> UpOne | ')' -> DownOne | _ -> invalidOp "Unexpected Character." |> raise)
         
         let finalFloor = Floor.fold floor directions
+        let basementFloor = Floor.findBasement floor directions
         
-        printfn $"Final Floor: %A{finalFloor}" 
+        printfn $"Final Floor: %A{finalFloor}"
+        printfn $"Basement Floor: {basementFloor}"
         return 0
     } |> Async.RunSynchronously

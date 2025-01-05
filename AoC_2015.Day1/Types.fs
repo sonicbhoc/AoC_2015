@@ -18,3 +18,8 @@ module Floor =
         
     let fold initialFloor directions =
         List.fold move initialFloor directions
+        
+    let findBasement initialFloor directions =
+        List.scan move initialFloor directions
+        |> List.takeWhile (fun (Floor f) -> f >= 0)
+        |> List.length
